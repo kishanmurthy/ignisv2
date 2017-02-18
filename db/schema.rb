@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218131504) do
+ActiveRecord::Schema.define(version: 20170218142015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buildings", force: :cascade do |t|
+    t.integer  "bays"
+    t.integer  "offices"
+    t.integer  "rest_room"
+    t.integer  "telephone_room"
+    t.string   "class_room"
+    t.bit      "residential_quaters", limit: 1
+    t.integer  "firestation_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["firestation_id"], name: "index_buildings_on_firestation_id", using: :btree
+  end
 
   create_table "districts", force: :cascade do |t|
     t.string   "name"
@@ -49,6 +62,25 @@ ActiveRecord::Schema.define(version: 20170218131504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["taluk_id"], name: "index_hoblis_on_taluk_id", using: :btree
+  end
+
+  create_table "houses", force: :cascade do |t|
+    t.string   "house_no"
+    t.integer  "no_of_bhk"
+    t.string   "designation"
+    t.bit      "status",      limit: 1
+    t.integer  "building_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["building_id"], name: "index_houses_on_building_id", using: :btree
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "zone_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zone_id"], name: "index_regions_on_zone_id", using: :btree
   end
 
   create_table "rranges", force: :cascade do |t|
@@ -98,9 +130,12 @@ ActiveRecord::Schema.define(version: 20170218131504) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "buildings", "firestations"
   add_foreign_key "districts", "rranges"
   add_foreign_key "firestations", "hoblis"
   add_foreign_key "hoblis", "taluks"
+  add_foreign_key "houses", "buildings"
+  add_foreign_key "regions", "zones"
   add_foreign_key "rranges", "zones"
   add_foreign_key "taluks", "districts"
   add_foreign_key "vehicles", "firestations"
