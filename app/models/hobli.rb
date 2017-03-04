@@ -1,4 +1,4 @@
 class Hobli < ApplicationRecord
   belongs_to :taluk
-  has_many :firestation
+  has_many :firestations
 end

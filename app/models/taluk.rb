@@ -1,4 +1,4 @@
 class Taluk < ApplicationRecord
   belongs_to :district
-  has_many :hobli
+  has_many :hoblis
 end

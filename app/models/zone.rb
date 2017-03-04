@@ -1,3 +1,3 @@
 class Zone < ApplicationRecord
-	has_many :rrange 
+	has_many :rranges
 end

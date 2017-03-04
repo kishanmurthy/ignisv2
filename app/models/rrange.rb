@@ -1,4 +1,4 @@
 class Rrange < ApplicationRecord
   belongs_to :zone
-  has_many :district
+  has_many :districts
 end
