@@ -6,7 +6,7 @@ class CreateBuildings < ActiveRecord::Migration[5.0]
       t.integer :rest_room
       t.integer :telephone_room
       t.string :class_room
-      t.bit :residential_quaters
+      t.boolean :residential_quaters
       t.references :firestation, foreign_key: true
 
       t.timestamps

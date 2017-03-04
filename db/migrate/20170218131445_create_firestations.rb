@@ -12,7 +12,7 @@ class CreateFirestations < ActiveRecord::Migration[5.0]
       t.integer :cost_of_establishment
       t.integer :sanctioned_strength
       t.integer :actual_strength
-      t.string :taluk_bit
+      t.boolean :taluk_bit
       t.integer :status
       t.references :hobli, foreign_key: true
 

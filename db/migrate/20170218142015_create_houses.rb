@@ -4,7 +4,7 @@ class CreateHouses < ActiveRecord::Migration[5.0]
       t.string :house_no
       t.integer :no_of_bhk
       t.string :designation
-      t.bit :status
+      t.boolean :status
       t.references :building, foreign_key: true
 
       t.timestamps
